@@ -38,16 +38,16 @@ class Reddit_API(API_Inf):
 """
 Guidline for defining External APIs:
 
+- If API key is needed:
+    - 'list_url' and 'search_url' must contain positional argument 'api_key'
+    - API_KEY: must be passed                           --- REQUIRED
+
 - list_url:
-    - 'limit' is optional argumnet that could be passed as positional argument
+    - limit: Max number of displayed news, default = 10 --- OPTIONAL
 
 - search_url:
-    - Must contain positional argument 'query'
-    - 'limit' is optional argumnet that could be passed as positional argument
-
-- If API key is needed:
-    - list_url and search_url must contain positional argument 'api_key'
-    - API_KEY must be passed
+    - query: Query input to be looked for               --- REQUIRED
+    - limit: Max number of displayed news, default = 10 --- OPTIONAL
 
 - headers could be passed if needed
 """
