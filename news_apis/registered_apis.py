@@ -5,7 +5,7 @@ To add a new API:
     - Override the function parse_news to define how to parse the json-response
         of the new API into the right format.
     - You can add new methods to the class for extra functionalities if you want
-    - Add the new API to the external APIs list 'EXT_API'
+    - Add the new API to the external APIs list 'API_LIST'
 """
 from .api_blueprint import API_Inf
 
@@ -52,7 +52,7 @@ Guidline for defining External APIs:
 - headers could be passed if needed
 """
 
-EXT_API = [
+API_LIST = [
     News_API(
         list_url = ('https://newsapi.org/v2/everything'
                     '?pageSize={limit}'

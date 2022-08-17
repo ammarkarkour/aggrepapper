@@ -1,4 +1,5 @@
 import requests
+from configure import config
 
 
 """
@@ -27,12 +28,12 @@ class API_Inf(object):
         """
         pass
 
-    def get_search_result(self, query, limit=10):
+    def get_search_result(self, query, limit=config['limit']):
         search_url = self.search_url.format(api_key=self.API_KEY, query=query, limit=limit)
         search_news = requests.get(search_url, headers=self.headers).json()
         return self.parse_news(search_news)
 
-    def get_list_result(self, limit=10):
+    def get_list_result(self, limit=config['limit']):
         list_url = self.list_url.format(api_key=self.API_KEY, limit=limit)
         list_news = requests.get(list_url, headers=self.headers).json()
         return self.parse_news(list_news)
