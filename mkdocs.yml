@@ -1,0 +1,12 @@
+site_name: Aggrepapper Docs
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings
+
+nav:
+  - Aggrepapper Docs: index.md
+  - How-To Guides: how-to-guides.md
+  - reference_explaination.md

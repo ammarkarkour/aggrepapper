@@ -1,16 +1,35 @@
-"""
+"""Register a new external API for news aggregation.
+
+One of the main goals of the code design of this project is to make adding a new
+news external API easy and intuitive. This module is used to register the API
+that will be used to aggregate the news.
+
 To add a new API:
-    - Read the file news_apis.api_blueprint.py to understand the API interface
-    - Create a class that inherits from API_Inf
-    - Override the function parse_news to define how to parse the json-response
+    * Read the file news_apis/api_blueprint.py to understand the API interface
+    * Create a class that inherits from API_Inf
+    * Override the function parse_news to define how to parse the json-response 
         of the new API into the right format.
-    - You can add new methods to the class for extra functionalities if you want
-    - Add the new API to the external APIs list 'API_LIST'
+    * You can add new methods to the class for extra functionalities if you want
+    * Define the new API and add it to the external APIs list 'API_LIST'
+
+Guidline for defining External APIs:
+    * If API key is needed:
+        * 'list_url' and 'search_url' must contain positional argument 'api_key'
+        * API_KEY: must be passed                           --- REQUIRED
+    * list_url:
+        * limit: Max number of displayed news, default = 10 --- OPTIONAL
+    * search_url:
+        * query: Query input to be looked for               --- REQUIRED
+        * limit: Max number of displayed news, default = 10 --- OPTIONAL
+    * headers could be passed if needed
 """
+
 from .api_blueprint import API_Inf
 
 
 class News_API(API_Inf):
+    """Class API for newsapi API"""
+
     def parse_news(self, news):
         articles = news["articles"]
         result = []
@@ -23,6 +42,8 @@ class News_API(API_Inf):
         return result
 
 class Reddit_API(API_Inf): 
+    """Class API for reddit API"""
+    
     def parse_news(self, news):
         articles = news["data"]["children"]
         result = []
@@ -34,23 +55,6 @@ class Reddit_API(API_Inf):
             })
         return result
 
-
-"""
-Guidline for defining External APIs:
-
-- If API key is needed:
-    - 'list_url' and 'search_url' must contain positional argument 'api_key'
-    - API_KEY: must be passed                           --- REQUIRED
-
-- list_url:
-    - limit: Max number of displayed news, default = 10 --- OPTIONAL
-
-- search_url:
-    - query: Query input to be looked for               --- REQUIRED
-    - limit: Max number of displayed news, default = 10 --- OPTIONAL
-
-- headers could be passed if needed
-"""
 
 API_LIST = [
     News_API(
@@ -65,7 +69,7 @@ API_LIST = [
                       '&pageSize={limit}'
                       '&apiKey={api_key}'
         ),
-        API_KEY = '8d8548be01a44759a18214854ed27de2'
+        API_KEY = 'ADD YOUR NewsAPI KEY HERE'
     ),
 
     Reddit_API(

@@ -15,8 +15,6 @@ class TestAggrepapper(unittest.TestCase):
             self.assertTrue("headline" in news)
             self.assertTrue("link" in news)
             self.assertTrue("source" in news)
-            self.assertTrue(news["source"] == "newsapi" 
-                         or news["source"] == "reddit")
 
     def test_search(self):
         response = client.get("/news/?query=computer vision")
@@ -27,8 +25,6 @@ class TestAggrepapper(unittest.TestCase):
             self.assertTrue("headline" in news)
             self.assertTrue("link" in news)
             self.assertTrue("source" in news)
-            self.assertTrue(news["source"] == "newsapi" 
-                         or news["source"] == "reddit")
 
 if __name__ == '__main__':
     unittest.main()

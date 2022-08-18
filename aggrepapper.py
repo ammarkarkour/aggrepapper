@@ -1,3 +1,19 @@
+"""Aggregate news from all registered APIs.
+
+This module defined the news aggregater API, which has 2 functionalities.
+The first functionality is list, which lists the news from all the different 
+registered APIs. The second functionality is search, which searches the news for
+articles that contain the query string. Moreover, our implementation is inhanced
+with Redis as a chaching system that works by temporarily storing information in
+a key-value data structure, which we set it to expire after 1 hour in case new 
+news articles got published.
+
+This module contains the following function:
+
+- `get_new(query)` - Returns the aggregated news.
+"""
+
+from __future__ import annotations
 import json
 import redis
 import uvicorn
@@ -11,7 +27,15 @@ app = FastAPI()
 cache = redis.StrictRedis(decode_responses=True)
 
 @app.get("/news/")
-def get_news(query: Union[str, None] = None):
+def get_news(query: Union[str, None] = None) -> list[dict[str, str]]:
+    """Aggregates news from different APIs.
+    
+    Args:
+        query: Searching for a spacific string.
+
+    Returns:
+        list of dictionaries where each dictionary is a news article
+    """
     news = []
 
     # Search
