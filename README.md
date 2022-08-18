@@ -1,3 +1,5 @@
+![collection-newspapers](https://user-images.githubusercontent.com/43296450/185280372-922f4134-2629-40fd-a0a6-bfde5fa2a504.jpg)
+
 # Aggrepaper
 A news aggregator from different APIs. Its aim is to aggregate news from 
 different APIs and display them to users, while making it easy for developers 
